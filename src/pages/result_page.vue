@@ -3,7 +3,7 @@
 		<img class="sign_success" src="../static/sign_success.png" v-if="type == 1">
 		<img class="sign_fail" src="../static/sign_fail.png" v-if="type == 0">
 		<div class="toast">签到{{type == 1?'成功':'失败'}}</div>
-		<div class="sign_time" v-if="type == 1">签到时间</div>
+		<div class="sign_time" v-if="type == 1">{{type == 1?'签到时间：':''}}{{toast}}</div>
 	</div>
 </template>
 <script>
@@ -11,13 +11,12 @@
 		data(){
 			return {
 				type:'1',			//1:成功；2:失败
+				toast:""
 			}
 		},
 		created(){
 			this.type = this.$route.query.type;
-			if(this.type == '1'){
-				this.sign_in_time = this.$route.query.sign_in_time;
-			}
+			this.toast = this.$route.query.toast;
 			
 		}
 	}
